@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Register;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -16,9 +16,11 @@ class RegisterController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        //print_r(request(['email', 'password']));
-        $user = Register::create(request(['email', 'password']));
-        
-        return redirect()->to('/home');
+        $email = request(['email']);
+        $pwd = request(['password']);
+        print_r($email);
+        print_r($pwd);
+        $user = Register::create(array('email' => $email,'pwd'=>$pwd));        
+        //return redirect()->to('/home');
     }
 }
